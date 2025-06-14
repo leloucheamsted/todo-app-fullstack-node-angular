@@ -20,13 +20,18 @@ export class DataService {
     private tasks: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>([]);
     private isBusy: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     private currentTask: BehaviorSubject<Task | null> = new BehaviorSubject<Task | null>(null);
-
+    private showAddView: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     tags$ = this.tags.asObservable();
     categories$ = this.categories.asObservable();
     tasks$ = this.tasks.asObservable();
     isBusy$ = this.isBusy.asObservable();
     currentTask$ = this.currentTask.asObservable();
+    showAddView$ = this.showAddView.asObservable();
+
+    setShowAddView(show: boolean) {
+        this.showAddView.next(show);
+    }
     setBusy(isBusy: boolean) {
         this.isBusy.next(isBusy);
     }

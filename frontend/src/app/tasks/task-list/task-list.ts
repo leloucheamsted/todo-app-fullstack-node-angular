@@ -13,7 +13,9 @@ export class TaskList {
   taks: Task[] = [];
   currentTask: Task | null = null;
   catItems: Category[] = [];
+  displayedTasks: Task[] = [];
 
+  showAddView = false;
   constructor(private dataService: DataService) {
     this.dataService.categories$.subscribe((cats: Category[]) => {
       this.catItems = cats;
@@ -21,6 +23,10 @@ export class TaskList {
     });
     this.dataService.tasks$.subscribe((tasks: Task[]) => {
       this.taks = tasks;
+      this.displayedTasks = tasks;
+    });
+    this.dataService.showAddView$.subscribe((show: boolean) => {
+      this.showAddView = show;
     });
     this.dataService.currentTask$.subscribe((task: Task | null) => {
       this.currentTask = task;
@@ -28,12 +34,20 @@ export class TaskList {
 
   }
 
+  updateDisplayedTasks(tasks: Task[]) {
+    this.displayedTasks = tasks;
+  }
+
+
   setCurrentTask(task: Task) {
     if (this.currentTask && this.currentTask.id === task.id) {
       this.dataService.setCurrentTask(null);
       console.log("Task deselected");
     } else {
       this.dataService.setCurrentTask(task);
+      if (window.innerWidth <= 768) { // mobile breakpoint
+        this.dataService.setShowAddView(true);
+      }
     }
   }
   getCategoryColor(categoryId: number | null): string {

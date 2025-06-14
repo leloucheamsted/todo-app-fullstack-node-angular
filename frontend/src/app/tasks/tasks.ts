@@ -19,6 +19,9 @@ export class Tasks {
     this.dataService.isBusy$.subscribe((isBusy: boolean) => {
       this.isBusy = isBusy;
     });
+    this.dataService.showAddView$.subscribe((show: boolean) => {
+      this.showAddView = show;
+    });
   }
 
   ngOnInit(): void {
@@ -40,9 +43,9 @@ export class Tasks {
     this.showSiderBar = false;
   }
   openAddView(): void {
-    this.showAddView = true;
+    this.dataService.setShowAddView(true);
   }
   closeAddView(): void {
-    this.showAddView = false;
+    this.dataService.setShowAddView(false);
   }
 }
