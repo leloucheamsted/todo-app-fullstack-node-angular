@@ -128,7 +128,7 @@ exports.initData = async (req, res) => {
             attributes: {
                 include: [
                     [
-                        Sequelize.fn('COUNT', Sequelize.col('Tasks.id')),
+                        Sequelize.fn('COUNT', Sequelize.col('tasks.id')),
                         'taskCount'
                     ]
                 ]
@@ -139,7 +139,7 @@ exports.initData = async (req, res) => {
                     attributes: [],
                 }
             ],
-            group: ['Category.id'],
+            group: ['category.id'],
             order: [['name', 'ASC']]
         });
 
