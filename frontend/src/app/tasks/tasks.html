@@ -1,0 +1,45 @@
+<div class="h-screen  p-3  flex flex-wrap    space-y-4 md:space-y-0 justify-between items-start w-screen">
+    <div class="w-screen block md:hidden">
+        <nav class="bg-gray-100 rounded-[10px] p-3 flex  justify-between items-center">
+          <div class="text-xl  flex flex-nowrap justify-start items-center  space-x-3 font-bold  text-gray-700"><h3>Todo App</h3><button (click)="openAddView()" class="p-3 h-2 w-2 flex text-md justify-center items-center rounded-xl bg-[#3b82f680]">
+           +
+          </button></div>
+          <button (click)="openSideBar()" class="p-2 rounded hover:bg-gray-200">
+            <mat-icon svgIcon="menu"></mat-icon>
+          </button>
+        </nav>
+      </div>
+
+      <div class="bg-gray-100 h-full w-[20%] rounded-[10px] p-2 hidden md:block">
+        <app-task-side-bar></app-task-side-bar>
+      </div>
+      <div class="h-full w-screen md:w-[42%] ">
+        <app-task-list></app-task-list>
+      </div>
+      <div class="bg-gray-100 h-full rounded-[10px] p-2 w-[35%] hidden md:block">
+        <app-task-form></app-task-form>
+      </div>
+      <nz-drawer
+      [nzClosable]="true"
+      [nzVisible]="showSiderBar"
+      nzPlacement="left"
+      nzTitle=""
+      (nzOnClose)="closeSideBar()"
+    >
+      <ng-container *nzDrawerContent>
+        <app-task-side-bar></app-task-side-bar>
+      </ng-container>
+    </nz-drawer>
+
+    <nz-drawer
+    [nzClosable]="true"
+    [nzVisible]="showAddView"
+    nzPlacement="right"
+    nzTitle=""
+    (nzOnClose)="closeAddView()"
+  >
+    <ng-container *nzDrawerContent>
+        <app-task-form></app-task-form>
+    </ng-container>
+  </nz-drawer>
+</div>

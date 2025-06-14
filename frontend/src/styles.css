@@ -1,0 +1,157 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --color-primary:  #3b82f680;
+    --color-secondary: #F59E0B;
+  }
+  body{
+    background-color: #ffffff;
+    color: #111827;
+    margin: 0;
+    padding: 0;
+  }
+  @media (max-width: 850px) {
+    .md\:block { display: none !important; }
+    .md\:hidden { display: block !important; }
+  }
+  @media (min-width: 851px) {
+    .md\:block { display: block !important; }
+    .md\:hidden { display: none !important; }
+  }
+@layer utilities {
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+}
+
+@layer base {
+    body {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+    }
+    p {
+        margin-bottom: 1rem;
+    }
+}
+@font-face {
+    font-weight: 400;
+    font-family: "Regular";
+    src: local("Rregular"), url(./assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+}
+
+
+@font-face {
+    font-weight: 700;
+    font-family: "Bold";
+    src: local("Bold"), url(./assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-weight: 600;
+    font-family: "SemiBold";
+    src: local("SemiBold"), url(./assets/fonts/Poppins/Poppins-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+    font-weight: 800;
+    font-family: "ExtraBold";
+    src: local("ExtraBold"), url(./assets/fonts/Poppins/Poppins-ExtraBold.ttf) format("truetype");
+}
+
+@font-face {
+    font-weight: 500;
+    font-family: "Medium";
+    src: local("Medium"), url(./assets/fonts/Poppins/Poppins-Medium.ttf) format("truetype");
+}
+
+@font-face {
+    font-weight: 300;
+    font-family: "Light";
+    src: local("Light"), url(./assets/fonts/Poppins/Poppins-Light.ttf) format("truetype");
+}
+.regular {
+    font-family: "Regular";
+}
+.bold {
+    font-family: "Bold";
+}
+.semi-bold {
+    font-family: "SemiBold";
+}
+.extra-bold {
+    font-family: "ExtraBold";
+}
+.medium {
+    font-family: "Medium";
+}
+.light {
+    font-family: "Light";
+}
+
+.ant-input-affix-wrapper{
+    border-radius: 10px;
+    font-family: "regular", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+}
+textarea.ant-input{
+    border-radius: 10px !important;
+    font-family: "regular", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    height: 200px !important;
+    resize: none !important;
+}
+.ant-input{
+    border-radius: 10px !important;
+    font-family: "regular", sans-serif;
+    font-weight: 400;
+   
+    font-size: 12px;
+}
+
+.ant-picker-dropdown {
+    z-index: 9999 !important;
+  }
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    background-color: transparent;
+    border: 0px solid #d9d9d9;
+  }
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-color: transparent !important;
+  }
+  .ant-input, .ant-input-affix-wrapper, .ant-picker {
+    border: 0px solid #d9d9d9;
+}
+.ant-picker {
+    
+    background: transparent;
+    
+}
+.ant-collapse {
+    margin: 0;
+    border: 0px solid #d9d9d9 !important;
+}
+.ant-drawer-wrapper-body{
+    background-color: 
+    rgba(243, 244, 246,1)
+}

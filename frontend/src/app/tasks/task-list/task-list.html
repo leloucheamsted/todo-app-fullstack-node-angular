@@ -1,0 +1,18 @@
+<div class="space-y-6">
+    <h3 class="text-gray-900 bold text-3xl">Todo App  <span class="pl-10 light">5 tasks</span></h3>
+
+    <div>
+        @for (panel of panels; track panel) {
+          <div class="border-b-[1px] cursor-pointer hover:bg-gray-100 border-gray-300 flex justify-between items-center p-2">
+            
+            <div class="flex items-center gap-2">
+                <label nz-checkbox [ngModel]="true"></label>
+                <h4 class="text-gray-500 semi-bold">{{ panel.name }}</h4>
+            </div>
+            <button  class="text-gray-600 hover:text-gray-900">
+                <mat-icon svgIcon="next" class="scale-[0.8]"></mat-icon>
+            </button>
+        </div>
+        }
+    </div>
+</div>
