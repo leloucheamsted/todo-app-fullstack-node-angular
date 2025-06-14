@@ -9,6 +9,7 @@ import { IconModule } from './icon.module';
 import { MatIconModule } from '@angular/material/icon';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor.service';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -30,6 +31,7 @@ const routerConfig: ExtraOptions = {
 
     providers: [
         HttpClient,
+        { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true },
         { provide: NZ_I18N, useValue: en_US },
     ],
     bootstrap: [App],
