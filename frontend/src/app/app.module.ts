@@ -28,6 +28,8 @@ import { CreateCategoriesUseCase } from './core/use_cases/categories/create_cate
 import { GetAllTagsUseCase } from './core/use_cases/tags/get_all_tags_usecase';
 import { CreateTagUseCase } from './core/use_cases/tags/create_tag_usecase';
 import { DataService } from './core/services/data.service';
+import { LoadingComponent } from './shared/loading/loading.component';
+import { InitTasksUseCase } from './core/use_cases/tasks/init_tasks_usecase';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -42,6 +44,7 @@ const routerConfig: ExtraOptions = {
 
     declarations: [
         App,
+
     ],
     imports: [BrowserModule, BrowserAnimationsModule,
         RouterModule, HttpClientModule, MatIconModule, IconModule, TaskModule],
@@ -60,6 +63,7 @@ const routerConfig: ExtraOptions = {
 
         // tasks  use cases
         { provide: GetAllTaskUseCase },
+        { provide: InitTasksUseCase },
         { provide: DeleteTaskUseCase },
         { provide: CreateTaskUseCase },
         { provide: GetTaskByIdUseCase },

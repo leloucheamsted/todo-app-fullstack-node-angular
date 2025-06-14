@@ -3,13 +3,18 @@ import { TasksRepository } from "../../core/repositories/tasks_repository";
 import { Observable } from "rxjs";
 import { Task } from "../../models/task.model";
 import { dataSource } from "../data_source/data_source";
+import { InitData } from "../../models/init.model";
 
 @Injectable()
 export class TasksRepositoryImpl extends TasksRepository {
 
 
+
     constructor(private source: dataSource) {
         super();
+    }
+    override initData(): Observable<InitData> {
+        return this.source.initData();
     }
     override getAllTasks(): Observable<Task[]> {
         return this.source.getAllTasks();

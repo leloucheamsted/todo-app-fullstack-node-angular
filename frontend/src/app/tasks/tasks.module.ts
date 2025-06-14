@@ -14,8 +14,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { LoadingComponent } from "../shared/loading/loading.component";
 @NgModule({
-    declarations: [TaskForm, TaskList, TaskSideBar, Tasks],
+    declarations: [TaskForm, TaskList, TaskSideBar, Tasks, LoadingComponent],
     imports: [CommonModule, FormsModule, NzDrawerModule, NzDatePickerModule, NzCheckboxModule, NzCollapseModule, NzButtonModule, NzSelectModule, ReactiveFormsModule, NzInputModule, MatIconModule,],
     exports: [Tasks],
 })

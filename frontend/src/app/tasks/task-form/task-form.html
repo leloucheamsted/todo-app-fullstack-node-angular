@@ -1,10 +1,11 @@
-<div class="space-y-6">
+<div class="space-y-6 relative h-[85vh] ">
     <h3 class="text-gray-600 bold text-xl">Task :</h3>
 
-    <div class="flex flex-col gap-2 mt-2">
-        <input nz-input  placeholder="Task title" class="h-10" />
+    <div class="flex flex-col h-full justify-between gap-2 mt-2">
+      <div class="flex flex-col gap-2">
+        <input nz-input [(ngModel)]="taskTitle"  placeholder="Task title" class="h-10" />
         <nz-textarea-count [nzMaxCharacterCount]="2000">
-            <textarea  nz-input rows="2" placeholder="write any thing"></textarea>
+            <textarea  [(ngModel)]="taskDescription" nz-input rows="2" placeholder="write any thing"></textarea>
           </nz-textarea-count>
         <div class="flex items-center  gap-2 space-x-10">
             <h4 class="text-gray-500 semi-bold ">List </h4>
@@ -19,7 +20,7 @@
         </div>
         <div class="flex items-center  gap-2 space-x-3">
             <h4 class="text-gray-500 semi-bold ">Due date </h4>
-            <nz-date-picker [nzSuffixIcon]="customIcon" [nzPlacement]="'bottomLeft'" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker>
+            <nz-date-picker  [nzPlacement]="'bottomLeft'" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker>
             <ng-template #customIcon>
                 <mat-icon svgIcon="down"></mat-icon>
               </ng-template>
@@ -31,10 +32,11 @@
                 <mat-icon svgIcon="down"></mat-icon>
               </ng-template>
         </div>
+      </div>
 
         <div class="flex justify-between b space-x-5 items-center">
             <button   class="px-5 py-2 w-full border-[1px] border-gray-300 rounded-[5px] regular hover:bg-gray-400 ">Delete task</button>
-            <button  class="px-5 py-2 regular w-full rounded-[5px] text-white  bg-[#1890ff]">Save changes</button>
+            <button [disabled]="!taskTitle || !taskDescription"  class="px-5 py-2 regular w-full rounded-[5px] text-white  bg-[#1890ff]">Save changes</button>
 
         </div>
     </div>

@@ -9,7 +9,8 @@ import { Component } from '@angular/core';
 export class TaskForm {
   date = null;
   isEnglish = false;
-
+  taskTitle = '';
+  taskDescription = '';
   constructor() { }
 
   onChange(result: Date): void {

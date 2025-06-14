@@ -11,6 +11,10 @@ require('./routes/task.routes')(app);
 require('./routes/category.routes')(app);
 require('./routes/tag.routes')(app);
 
-db.sequelize.sync();
+db.sequelize.sync().then(() => {
+    require('./init')();
+}).catch(err => {
+    console.error('Error synchro database:', err);
+});
 
 module.exports = app;

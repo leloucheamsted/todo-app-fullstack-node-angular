@@ -1,4 +1,4 @@
-<div class="h-screen  p-3  flex flex-wrap    space-y-4 md:space-y-0 justify-between items-start w-screen">
+<div class="h-screen overflow-hidden  p-3  flex flex-wrap    space-y-4 md:space-y-0 justify-between items-start w-screen">
     <div class="w-screen block md:hidden">
         <nav class="bg-gray-100 rounded-[10px] p-3 flex  justify-between items-center">
           <div class="text-xl  flex flex-nowrap justify-start items-center  space-x-3 font-bold  text-gray-700"><h3>Todo App</h3><button (click)="openAddView()" class="p-3 h-2 w-2 flex text-md justify-center items-center rounded-xl bg-[#3b82f680]">
@@ -42,4 +42,6 @@
         <app-task-form></app-task-form>
     </ng-container>
   </nz-drawer>
+  <!-- <app-loading *ngIf="true" /> -->
+
 </div>

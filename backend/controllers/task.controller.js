@@ -3,6 +3,7 @@ const Task = db.Task;
 const Category = db.Category;
 const Tag = db.Tag;
 
+
 exports.create = async (req, res) => {
     try {
         const {
@@ -109,5 +110,48 @@ exports.delete = async (req, res) => {
         res.json({ message: 'Task delete with success' });
     } catch (err) {
         res.status(500).json({ message: err.message });
+    }
+};
+exports.initData = async (req, res) => {
+    try {
+        const tasks = await Task.findAll({
+            include: [
+                { model: Category, attributes: ['id', 'name', 'created_at'] },
+                { model: Tag, attributes: ['id', 'name'], through: { attributes: [] } },
+
+            ],
+            order: [['created_at', 'DESC']]
+        });
+
+        const categoriesWithCount = await Category.findAll({
+            attributes: {
+                include: [
+                    [
+                        Sequelize.fn('COUNT', Sequelize.col('Tasks.id')),
+                        'taskCount'
+                    ]
+                ]
+            },
+            include: [
+                {
+                    model: Task,
+                    attributes: [],
+                }
+            ],
+            group: ['Category.id'],
+            order: [['name', 'ASC']]
+        });
+
+        const tags = await Tag.findAll({
+            attributes: ['id', 'name']
+        });
+
+        return res.json({
+            tasks,
+            categories: categoriesWithCount,
+            tags
+        });
+    } catch (err) {
+        return res.status(500).json({ error: 'Server error' });
     }
 };

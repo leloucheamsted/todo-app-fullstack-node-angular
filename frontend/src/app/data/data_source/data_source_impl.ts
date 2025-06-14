@@ -5,11 +5,13 @@ import { Observable } from "rxjs";
 import { Category } from "../../models/category.model";
 import { Tag } from "../../models/tag.model";
 import { Task } from "../../models/task.model";
+import { InitData } from "../../models/init.model";
 
 @Injectable({
     providedIn: 'root'
 })
 export class dataSourceImpl extends dataSource {
+
 
     _getUrl(): string {
         // USE .ENV FILE TO GET THE URL
@@ -21,6 +23,9 @@ export class dataSourceImpl extends dataSource {
         super()
     }
 
+    override initData(): Observable<InitData> {
+        return this.http.get<InitData>(`${this._getUrl()}/init`);
+    }
     override getAllCategories(): Observable<Category[]> {
         return this.http.get<Category[]>(`${this._getUrl()}/categories`);
     }
