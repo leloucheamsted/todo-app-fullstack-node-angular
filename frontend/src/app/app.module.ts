@@ -18,6 +18,15 @@ import { CategoriesRepository } from './core/repositories/categories_repository'
 import { CategoriesRepositoryImpl } from './data/repositories/categories_repository_impl';
 import { TagsRepository } from './core/repositories/tags_repository';
 import { TagsRepositoryImpl } from './data/repositories/tags_repository_impl';
+import { GetAllTaskUseCase } from './core/use_cases/tasks/get_all_tasks_usecase';
+import { DeleteTaskUseCase } from './core/use_cases/tasks/delete_task_usecases';
+import { CreateTaskUseCase } from './core/use_cases/tasks/create_task_usecase';
+import { GetTaskByIdUseCase } from './core/use_cases/tasks/get_task_by_id_usecase';
+import { UpdateTaskUseCase } from './core/use_cases/tasks/update_task_usecase';
+import { GetAllCategoriesUseCase } from './core/use_cases/categories/get_all_categories_usecase';
+import { CreateCategoriesUseCase } from './core/use_cases/categories/create_categorie_usecase';
+import { GetAllTagsUseCase } from './core/use_cases/tags/get_all_tags_usecase';
+import { CreateTagUseCase } from './core/use_cases/tags/create_tag_usecase';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -46,6 +55,23 @@ const routerConfig: ExtraOptions = {
         { provide: CategoriesRepository, useClass: CategoriesRepositoryImpl },
         { provide: TagsRepository, useClass: TagsRepositoryImpl },
         { provide: NZ_I18N, useValue: en_US },
+
+
+        // tasks  use cases
+        { provide: GetAllTaskUseCase },
+        { provide: DeleteTaskUseCase },
+        { provide: CreateTaskUseCase },
+        { provide: GetTaskByIdUseCase },
+        { provide: UpdateTaskUseCase },
+
+        // categories use cases
+        { provide: GetAllCategoriesUseCase },
+        { provide: CreateCategoriesUseCase },
+
+        // tags use cases
+        { provide: GetAllTagsUseCase },
+        { provide: CreateTagUseCase }
+
     ],
     bootstrap: [App],
 
