@@ -27,6 +27,7 @@ import { GetAllCategoriesUseCase } from './core/use_cases/categories/get_all_cat
 import { CreateCategoriesUseCase } from './core/use_cases/categories/create_categorie_usecase';
 import { GetAllTagsUseCase } from './core/use_cases/tags/get_all_tags_usecase';
 import { CreateTagUseCase } from './core/use_cases/tags/create_tag_usecase';
+import { DataService } from './core/services/data.service';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -48,7 +49,7 @@ const routerConfig: ExtraOptions = {
 
     providers: [
         HttpClient,
-
+        DataService,
         { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true },
         { provide: dataSource, useClass: dataSourceImpl },
         { provide: TasksRepository, useClass: TasksRepositoryImpl },
