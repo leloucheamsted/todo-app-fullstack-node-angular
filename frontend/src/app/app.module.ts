@@ -10,6 +10,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor.service';
+import { dataSource } from './data/data_source/data_source';
+import { dataSourceImpl } from './data/data_source/data_source_impl';
+import { TasksRepository } from './core/repositories/tasks_repository';
+import { TasksRepositoryImpl } from './data/repositories/tasks_repository_impl';
+import { CategoriesRepository } from './core/repositories/categories_repository';
+import { CategoriesRepositoryImpl } from './data/repositories/categories_repository_impl';
+import { TagsRepository } from './core/repositories/tags_repository';
+import { TagsRepositoryImpl } from './data/repositories/tags_repository_impl';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -31,7 +39,12 @@ const routerConfig: ExtraOptions = {
 
     providers: [
         HttpClient,
+
         { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true },
+        { provide: dataSource, useClass: dataSourceImpl },
+        { provide: TasksRepository, useClass: TasksRepositoryImpl },
+        { provide: CategoriesRepository, useClass: CategoriesRepositoryImpl },
+        { provide: TagsRepository, useClass: TagsRepositoryImpl },
         { provide: NZ_I18N, useValue: en_US },
     ],
     bootstrap: [App],
