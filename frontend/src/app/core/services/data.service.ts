@@ -72,13 +72,11 @@ export class DataService {
         this.tasks.next([...currentTasks, task]);
     }
 
-    // delete task
     deleteTask(id: number) {
         const currentTasks = this.tasks.getValue();
         const updatedTasks = currentTasks.filter(task => task.id !== id);
         this.tasks.next(updatedTasks);
     }
-    // update task
     updateTask(updatedTask: Task) {
         const currentTasks = this.tasks.getValue();
         const taskIndex = currentTasks.findIndex(task => task.id === updatedTask.id);

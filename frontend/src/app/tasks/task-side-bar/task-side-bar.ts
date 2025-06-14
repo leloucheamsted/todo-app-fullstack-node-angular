@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { count } from 'console';
 import { Tag } from '../../models/tag.model';
 import { generateRandomColor } from '../../utilities/utilities';
 import { Data } from '@angular/router';

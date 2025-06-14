@@ -30,18 +30,15 @@ export class dataSourceImpl extends dataSource {
         return this.http.get<InitData>(`${this._getUrl()}/tasks/init`);
     }
     override getAllCategories(): Observable<Category[]> {
-        // get categories from the server and return them with colors
         let categories$ = this.http.get<Category[]>(`${this._getUrl()}/categories`);
         return categories$.pipe(
             map(categories => {
                 return categories.map((category: any) => ({
                     ...category,
-                    color: category.color || generateRandomColor() // Ensure color is set
+                    color: category.color || generateRandomColor()
                 }));
             })
         );
-        // Uncomment the line below if you want to use the local data instead of the server
-        // return this.http.get<Category[]>(`${this._getUrl()}/categories`);
     }
     override createCategorie(CatName: string): Observable<Category> {
         return this.http.post<Category>(`${this._getUrl()}/categories`, { name: CatName });

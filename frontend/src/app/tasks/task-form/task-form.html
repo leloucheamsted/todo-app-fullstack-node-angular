@@ -3,11 +3,11 @@
 
     <div class="flex flex-col h-full justify-between gap-2 mt-2">
       <div class="flex flex-col gap-2">
-        <input nz-input [(ngModel)]="task.title"  placeholder="Task title" class="h-10" />
-            <textarea  [(ngModel)]="task.description" nz-input rows="2" placeholder="write any thing"></textarea>
+        <input name="taskTitle" nz-input [(ngModel)]="task.title"  placeholder="Task title" class="h-10" />
+            <textarea name="taskDescription"  [(ngModel)]="task.description" nz-input rows="2" placeholder="write any thing"></textarea>
         <div class="flex items-center  gap-2 space-x-2">
             <h4 class="text-gray-500 semi-bold ">Categories </h4>
-            <nz-select   [(ngModel)]="selectedCategoryId"            [nzSuffixIcon]="customIcon"  ngModel="lucy">
+            <nz-select  name="categoriesPick"  [(ngModel)]="selectedCategoryId"            [nzSuffixIcon]="customIcon">
               <nz-option 
               
               *ngFor="let cat of catItems" 
@@ -21,7 +21,7 @@
         </div>
         <div class="flex items-center  gap-2 space-x-3">
             <h4 class="text-gray-500 semi-bold ">Due date </h4>
-            <nz-date-picker  [nzPlacement]="'bottomLeft'" [(ngModel)]="task.created_at" (ngModelChange)="onChange($event)"></nz-date-picker>
+            <nz-date-picker  name="pickerDate" [nzPlacement]="'bottomLeft'" [(ngModel)]="task.created_at" (ngModelChange)="onChange($event)"></nz-date-picker>
             <ng-template #customIcon>
                 <mat-icon svgIcon="down"></mat-icon>
               </ng-template>
@@ -51,8 +51,15 @@
 
         <div class="flex justify-between b space-x-5 items-center">
             <button (click)="task.id!=0 ? deleteCurrentTask(task.id??0) : cleanField()"   class="px-5 py-2 w-full border-[1px] border-gray-300 rounded-[5px] regular hover:bg-gray-400 ">{{task.id!=0 ? 'Delete task' :'Clear' }}</button>
-            <button (click)=" saveTask()" [ngClass]="!task.title || !task.description ? 'cursor-not-allowed':'cursor-pointer'" [disabled]="!task.title || !task.description"  class="px-5 py-2 regular w-full rounded-[5px] text-white  bg-[#1890ff]">Save changes</button>
-
+            <button
+            data-testid="save-btn"
+            (click)="saveTask()"
+            [ngClass]="!task.title || !task.description ? 'cursor-not-allowed':'cursor-pointer'"
+            [disabled]="!task.title || !task.description"
+            [ngStyle]="{ 'background-color': '#1890ff', color: 'white' }"
+            class="px-5 py-2 regular w-full rounded-[5px]">
+            Save changes
+          </button>
         </div>
     </div>
 </div>

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskSideBar } from './task-side-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 describe('TaskSideBar', () => {
   let component: TaskSideBar;
@@ -8,9 +10,10 @@ describe('TaskSideBar', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskSideBar]
+      declarations: [TaskSideBar],
+      imports: [MatIconModule, NzInputModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TaskSideBar);
     component = fixture.componentInstance;

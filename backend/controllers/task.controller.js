@@ -104,10 +104,11 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     try {
         const task = await Task.findByPk(req.params.id);
-        if (!task) return res.status(404).json({ message: 'Taks not found' });
+        if (!task) return res.status(404).json({ message: 'Task not found' });
 
         await task.destroy();
-        res.json({ message: 'Task delete with success' });
+        // 204 No Content, pas de body
+        return res.status(204).send();
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
