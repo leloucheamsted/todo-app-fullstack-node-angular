@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { count } from 'console';
+import { Tag } from '../../models/tag.model';
+import { generateRandomColor } from '../../utilities/utilities';
+import { Data } from '@angular/router';
+import { DataService } from '../../core/services/data.service';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-task-side-bar',
@@ -16,20 +21,19 @@ export class TaskSideBar {
     { label: 'Calendar', icon: 'calendar', color: 'text-purple-500', isActive: false },
     { label: 'Sticky List', icon: 'note', color: 'text-yellow-500', isActive: false },
   ];
-  catItems = [
-    { label: 'Personal', color: 'bg-red-500', count: '10' },
-    { label: 'Work', color: 'bg-green-500', count: '5' },
-    { label: 'Others', color: 'bg-yellow-500', count: '15' },
-  ];
-  tags = [
-    { label: 'Urgent', color: 'bg-red-500', },
-    { label: 'Important', color: 'bg-blue-500', },
-  ];
-  addTag() {
-    if (this.newTag.trim()) {
-      this.tags.push({ label: this.newTag, color: 'bg-gray-200' });
-      this.newTag = '';
-      this.showTagInput = false;
-    }
+  catItems: Category[] = [];
+  tasksCount = 0;
+  constructor(private dataService: DataService) {
+
+    this.dataService.categories$.subscribe((cats: Category[]) => {
+      console.log("Categories: ", cats);
+      this.catItems = cats;
+    });
+    this.dataService.tasks$.subscribe((tasks: any[]) => {
+      this.tasksCount = tasks.length;
+      this.menuItems[1].count = tasks.length.toString();
+    });
   }
+
+
 }

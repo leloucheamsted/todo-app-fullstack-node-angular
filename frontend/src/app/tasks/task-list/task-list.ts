@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { DataService } from '../../core/services/data.service';
+import { Task } from '../../models/task.model';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-task-list',
@@ -7,20 +10,35 @@ import { Component } from '@angular/core';
   styleUrl: './task-list.css'
 })
 export class TaskList {
-  panels = [
-    {
-      active: true,
-      name: 'This is panel header 1',
-      disabled: false
-    },
-    {
-      active: false,
-      disabled: false,
-      name: 'This is panel header 2'
-    },
-    {
-      active: false,
-      name: 'This is panel header 3'
+  taks: Task[] = [];
+  currentTask: Task | null = null;
+  catItems: Category[] = [];
+
+  constructor(private dataService: DataService) {
+    this.dataService.categories$.subscribe((cats: Category[]) => {
+      this.catItems = cats;
+
+    });
+    this.dataService.tasks$.subscribe((tasks: Task[]) => {
+      this.taks = tasks;
+    });
+    this.dataService.currentTask$.subscribe((task: Task | null) => {
+      this.currentTask = task;
+    });
+
+  }
+
+  setCurrentTask(task: Task) {
+    if (this.currentTask && this.currentTask.id === task.id) {
+      this.dataService.setCurrentTask(null);
+      console.log("Task deselected");
+    } else {
+      this.dataService.setCurrentTask(task);
     }
-  ];
+  }
+  getCategoryColor(categoryId: number | null): string {
+    const category = this.catItems.find(cat => cat.id === categoryId);
+    return category?.color ? category.color : '#ffffff'; // Default color if not found
+  }
+
 }

@@ -1,18 +1,32 @@
 <div class="space-y-6">
-    <h3 class="text-gray-900 bold text-3xl">Todo App  <span class="pl-10 light">5 tasks</span></h3>
+    <h3 class="text-gray-900 bold text-3xl">Todo App  <span class="pl-10 light">{{taks.length}} task(s)</span></h3>
 
+    
     <div>
-        @for (panel of panels; track panel) {
-          <div class="border-b-[1px] cursor-pointer hover:bg-gray-100 border-gray-300 flex justify-between items-center p-2">
+        @for (panel of taks; track panel) {
+          <div (click)="setCurrentTask(panel)" [ngClass]="currentTask?.id==panel.id ? 'bg-gray-200':'bg-gray-100'" class="border-b-[1px] cursor-pointer hover:bg-gray-300  flex justify-between items-center p-2">
             
-            <div class="flex items-center gap-2">
-                <label nz-checkbox [ngModel]="true"></label>
-                <h4 class="text-gray-500 semi-bold">{{ panel.name }}</h4>
+            <div class=" items-center space-y-3 gap-2">
+                <h4 class="text-gray-500 semi-bold">{{ panel.title }}</h4>
+                <div class="flex justify-start items-center space-x-5">
+                    <div class="flex justify-start items-center space-x-1">
+                        <mat-icon svgIcon="calendar" class="scale-[0.5]"></mat-icon>
+                        <span class="semi-bold text-xs">{{ panel.created_at | date: 'yyyy-MM-dd' }}</span>
+                    </div>
+                    <div class="flex justify-start items-center space-x-1">
+                        <div  class="h-4 w-4  rounded-sm" [ngStyle]="{'background': getCategoryColor(panel.category?.id??0)}"></div>
+                        <span class="semi-bold text-xs">{{ panel.category?.name }}</span>
+                </div>
+            </div>
             </div>
             <button  class="text-gray-600 hover:text-gray-900">
                 <mat-icon svgIcon="next" class="scale-[0.8]"></mat-icon>
             </button>
         </div>
         }
+    </div>
+    <div *ngIf="taks.length==0" class="flex flex-col pt-[10rem] justify-between items-center">
+       <mat-icon svgIcon="empty" class="scale-[5]"></mat-icon>
+       <h4 class="text-gray-500 semi-bold pt-10">No tasks available</h4>
     </div>
 </div>

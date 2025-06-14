@@ -2,10 +2,13 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { dataSource } from "./data_source";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { Category } from "../../models/category.model";
 import { Tag } from "../../models/tag.model";
 import { Task } from "../../models/task.model";
 import { InitData } from "../../models/init.model";
+import { environment } from "../../../environments/environment";
+import { generateRandomColor } from "../../utilities/utilities";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +18,7 @@ export class dataSourceImpl extends dataSource {
 
     _getUrl(): string {
         // USE .ENV FILE TO GET THE URL
-        let url = process.env["API_URL"] || '';
+        let url = environment.apiUrl
         return url;
     }
 
@@ -24,10 +27,21 @@ export class dataSourceImpl extends dataSource {
     }
 
     override initData(): Observable<InitData> {
-        return this.http.get<InitData>(`${this._getUrl()}/init`);
+        return this.http.get<InitData>(`${this._getUrl()}/tasks/init`);
     }
     override getAllCategories(): Observable<Category[]> {
-        return this.http.get<Category[]>(`${this._getUrl()}/categories`);
+        // get categories from the server and return them with colors
+        let categories$ = this.http.get<Category[]>(`${this._getUrl()}/categories`);
+        return categories$.pipe(
+            map(categories => {
+                return categories.map((category: any) => ({
+                    ...category,
+                    color: category.color || generateRandomColor() // Ensure color is set
+                }));
+            })
+        );
+        // Uncomment the line below if you want to use the local data instead of the server
+        // return this.http.get<Category[]>(`${this._getUrl()}/categories`);
     }
     override createCategorie(CatName: string): Observable<Category> {
         return this.http.post<Category>(`${this._getUrl()}/categories`, { name: CatName });
@@ -45,9 +59,13 @@ export class dataSourceImpl extends dataSource {
         return this.http.get<Task>(`${this._getUrl()}/tasks/${id}`);
     }
     override createTask(task: any): Observable<Task> {
+        task.tagIds = task.tags
+        console.log("Create Task", task);
         return this.http.post<Task>(`${this._getUrl()}/tasks`, task);
     }
-    override updateTask(id: number, task: Task): Observable<Task> {
+    override updateTask(id: number, task: any): Observable<Task> {
+        task.tagIds = task.tags;
+        console.log("Update Task", task);
         return this.http.put<Task>(`${this._getUrl()}/tasks/${id}`, task);
     }
     override deleteTask(id: number): Observable<any> {

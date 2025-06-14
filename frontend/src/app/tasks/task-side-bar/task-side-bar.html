@@ -29,17 +29,17 @@
                 *ngFor="let item of catItems"
                 
                 class="flex items-center  gap-2 cursor-pointer hover:bg-gray-100 rounded px-1  py-1">
-                <div [ngClass]="item.color" class="h-5 w-7 rounded-md "></div>
-                <span class="w-full text-gray-500 semi-bold">{{ item.label }}</span>
-                <div  class="h-4  w-8 p-2  flex justify-center  items-center semi-bold rounded-sm">{{item.count}}</div>
+                <div [ngStyle]="{'background': item.color}" class="h-5 w-7 rounded-md "></div>
+                <span class="w-full text-gray-500 semi-bold">{{ item.name }}</span>
+                <div  class="h-4  w-8 p-2  flex justify-center  items-center semi-bold rounded-sm">{{item.taskCount}}</div>
               </li>
             </ul>
 
-            <h3 class="semi-bold pt-10">TAGS</h3>
+            <!-- <h3 class="semi-bold pt-10">TAGS</h3>
 
             <div class="flex flex-wrap gap-2">
-                  <div *ngFor="let item of tags" [ngClass]="item.color" class="p-1 rounded-md ">
-                    <span class="w-full text-gray-700 bold text-[10px]">{{ item.label }}</span>
+                  <div [id]="item.id"  *ngFor="let item of tags" [ngClass]="item.color" class="p-1 rounded-md ">
+                    <span class="w-full text-gray-700 bold text-[10px]">{{ item.name }}</span>
                   </div>
                   <ng-container *ngIf="!showTagInput">
                     <div 
@@ -65,7 +65,7 @@
                       </button>
                     </div>
                   </ng-container>
-              </div>
+              </div> -->
     </div>
 
 </div>

@@ -5,12 +5,11 @@ import { Tasks } from './tasks';
 describe('Tasks', () => {
   let component: Tasks;
   let fixture: ComponentFixture<Tasks>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Tasks]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(Tasks);
     component = fixture.componentInstance;

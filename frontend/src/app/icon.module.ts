@@ -18,6 +18,7 @@ export class IconModule {
         this.matIconRegistry.addSvgIcon("plus", this.setPath(`${this.path}/plus.svg`))
         this.matIconRegistry.addSvgIcon("tasks", this.setPath(`${this.path}/tasks.svg`))
         this.matIconRegistry.addSvgIcon("upcoming", this.setPath(`${this.path}/upcoming.svg`))
+        this.matIconRegistry.addSvgIcon("empty", this.setPath(`${this.path}/empty.svg`))
 
 
     }

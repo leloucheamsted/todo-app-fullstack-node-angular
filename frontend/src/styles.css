@@ -133,18 +133,19 @@ textarea.ant-input{
     z-index: 9999 !important;
   }
   .ant-select:not(.ant-select-customize-input) .ant-select-selector{
-    background-color: transparent;
-    border: 0px solid #d9d9d9;
+    /* background-color: transparent; */
+    /* border: 0px solid #d9d9d9; */
+    border-radius: 5px;
   }
   .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    border-color: transparent !important;
+    /* border-color: transparent !important; */
   }
   .ant-input, .ant-input-affix-wrapper, .ant-picker {
     border: 0px solid #d9d9d9;
 }
 .ant-picker {
     
-    background: transparent;
+    /* background: transparent; */
     
 }
 .ant-collapse {
@@ -154,4 +155,14 @@ textarea.ant-input{
 .ant-drawer-wrapper-body{
     background-color: 
     rgba(243, 244, 246,1)
+}
+
+.ant-select{
+    min-width: 150px;
+    border-radius: 10px;
+    font-family: 'regular', sans-serif;
+    /* border: 1px solid #d9d9d9; */
+}
+.ant-select-item-option-content {
+    font-family: 'regular', sans-serif;
 }

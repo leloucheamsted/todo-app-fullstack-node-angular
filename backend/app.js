@@ -4,8 +4,9 @@ const cors = require('cors');
 const db = require('./models');
 
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors({
+    origin: 'http://localhost:4200'
+})); app.use(bodyParser.json());
 
 require('./routes/task.routes')(app);
 require('./routes/category.routes')(app);

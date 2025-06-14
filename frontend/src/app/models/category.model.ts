@@ -1,6 +1,6 @@
 export interface Category {
     id: number;
     name: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    taskCount?: number;
+    color?: string;
 }

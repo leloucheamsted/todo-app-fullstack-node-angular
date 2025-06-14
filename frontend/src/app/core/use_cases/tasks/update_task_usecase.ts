@@ -12,7 +12,7 @@ export class UpdateTaskUseCase implements IUseCase<Task, Task> {
     call(request: Task): Promise<Task> {
         try {
             return new Promise(async (resolve, reject) => {
-                this.repo.updateTask(request.id, request).subscribe((data: Task) => {
+                this.repo.updateTask(request.id ?? 0, request).subscribe((data: Task) => {
                     resolve(data);
                 });
             })

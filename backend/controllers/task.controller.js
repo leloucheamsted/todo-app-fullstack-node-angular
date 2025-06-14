@@ -2,7 +2,7 @@ const db = require('../models');
 const Task = db.Task;
 const Category = db.Category;
 const Tag = db.Tag;
-
+const { Sequelize } = require('../models');
 
 exports.create = async (req, res) => {
     try {
@@ -116,11 +116,11 @@ exports.initData = async (req, res) => {
     try {
         const tasks = await Task.findAll({
             include: [
-                { model: Category, attributes: ['id', 'name', 'created_at'] },
+                { model: Category, attributes: ['id', 'name'] },
                 { model: Tag, attributes: ['id', 'name'], through: { attributes: [] } },
 
             ],
-            order: [['created_at', 'DESC']]
+            // order: [['created_at', 'DESC']]
         });
 
         const categoriesWithCount = await Category.findAll({
@@ -152,6 +152,8 @@ exports.initData = async (req, res) => {
             tags
         });
     } catch (err) {
-        return res.status(500).json({ error: 'Server error' });
+        console.error('initData error:', err);
+        return res.status(500).json({ error: err.message || err.toString() });
+        return res.status(500).json({ error: err });
     }
 };
