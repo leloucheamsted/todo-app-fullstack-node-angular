@@ -1,6 +1,6 @@
 require('dotenv').config();
 module.exports = {
-    HOST: process.env.DB_HOST,
+    HOST: 'db', // so that it is accessible from the Docker container
     USER: process.env.DB_USER,
     PASSWORD: process.env.DB_PASSWORD,
     DB: process.env.DB_NAME,
